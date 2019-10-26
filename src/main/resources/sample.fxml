@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="apps.Controller">
+    <children>
+        <Button fx:id="runButton" layoutX="38.0" layoutY="231.0" mnemonicParsing="false" onAction="#runAction" prefHeight="26.0" prefWidth="738.0" text="Run and miracles happens" />
+        <TextArea fx:id="textArea" layoutX="38.0" layoutY="269.0" prefHeight="290.0" prefWidth="738.0" promptText="Some text to code or decode" wrapText="true" />
+        <RadioButton fx:id="decode" layoutX="667.0" layoutY="196.0" mnemonicParsing="false" onAction="#selectMethod" text="Decode">
+            <toggleGroup>
+                <ToggleGroup fx:id="code" />
+            </toggleGroup>
+            <font>
+                <Font size="20.0" />
+            </font>
+        </RadioButton>
+        <RadioButton fx:id="encode" layoutX="669.0" layoutY="154.0" mnemonicParsing="false" onAction="#selectMethod" selected="true" text="Encode" toggleGroup="$code">
+            <font>
+                <Font size="20.0" />
+            </font></RadioButton>
+        <Text layoutX="15.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SDA Enigma Machine" textAlignment="CENTER" wrappingWidth="769.7294921875">
+            <font>
+                <Font name="System Bold" size="50.0" />
+            </font>
+        </Text>
+        <Text layoutX="514.0" layoutY="583.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Powered by damian.soltysiuk@gmail.com" />
+        <Text layoutX="41.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Source file">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="41.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Destination">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="507.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose cipher">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <MenuBar fx:id="menu" layoutX="8.0" layoutY="14.0" prefHeight="29.0" prefWidth="783.0">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#loadAction" text="Open" />
+                        <MenuItem mnemonicParsing="false" onAction="#saveAction" text="Save" />
+                        <MenuItem fx:id="exportToPDF" mnemonicParsing="false" onAction="#toPDF" text="Export to PDF" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#closeApp" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Options">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Help" />
+                        <MenuItem mnemonicParsing="false" onAction="#sendEmail" text="Send mail" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <TextField fx:id="inputFilePath" layoutX="171.0" layoutY="154.0" onAction="#loadAction" promptText="d:/temp/input.txt" />
+        <TextField fx:id="outputFilePath" layoutX="171.0" layoutY="196.0" onAction="#saveAction" promptText="d:/temp/output.crpt" />
+        <Button fx:id="loadButton" layoutX="369.0" layoutY="154.0" mnemonicParsing="false" onAction="#loadAction" text="LOAD" />
+        <Button fx:id="saveButton" layoutX="369.0" layoutY="197.0" mnemonicParsing="false" onAction="#saveAction" text="SAVE" />
+        <ChoiceBox fx:id="listCipherMethod" layoutX="503.0" layoutY="196.0" prefWidth="150.0" />
+    </children>
+</AnchorPane>
