@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="289.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="apps.controllers.AddUserController">
+   <children>
+      <AnchorPane prefHeight="60.0" prefWidth="600.0">
+         <children>
+            <Label alignment="TOP_LEFT" layoutX="142.0" layoutY="15.0" text="Please, complete the form">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <HBox prefHeight="50.0" prefWidth="200.0">
+         <children>
+            <Label alignment="TOP_CENTER" text="Login">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="15.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="loginTA">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </TextField>
+            <Label text="User password">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="15.0" />
+               </padding>
+            </Label>
+            <PasswordField fx:id="loginPF">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="18.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </PasswordField>
+         </children>
+      </HBox>
+      <HBox prefHeight="50.0" prefWidth="200.0">
+         <children>
+            <Label text="Email">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="15.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="emailTA">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </TextField>
+            <Label text="Email password">
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="10.0" top="15.0" />
+               </padding>
+            </Label>
+            <PasswordField fx:id="emailPF">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </PasswordField>
+         </children>
+      </HBox>
+      <Label text="Prefer cipher method">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="10.0" top="10.0" />
+         </padding>
+      </Label>
+      <HBox prefHeight="50.0" prefWidth="200.0">
+         <children>
+            <ToggleButton fx:id="AtBashCipher" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" selected="true" text="AtBash">
+               <toggleGroup>
+                  <ToggleGroup fx:id="cipherMethod" />
+               </toggleGroup>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </ToggleButton>
+            <ToggleButton fx:id="CesarCipher" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Cesar" toggleGroup="$cipherMethod">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </ToggleButton>
+            <ToggleButton fx:id="MatrixCipher" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Matrix" toggleGroup="$cipherMethod">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </ToggleButton>
+            <ToggleButton fx:id="Rot13Cipher" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Rot13" toggleGroup="$cipherMethod">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </ToggleButton>
+            <ToggleButton fx:id="VigenereCipher" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Vigenere" toggleGroup="$cipherMethod">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </ToggleButton>
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#addUserJSON" text="Save user (JSON)">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="85.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#addUserXML" prefWidth="131.0" text="Save user (XML)">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#addUserCSV" prefHeight="36.0" prefWidth="131.0" text="Save user (CSV)">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>

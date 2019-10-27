@@ -2,7 +2,7 @@ package cipherMethod;
 
 import java.util.Random;
 
-public class Matrix implements ICipherMethod {
+class Matrix implements ICipherMethod {
     private String data;
     private String code = "";
 

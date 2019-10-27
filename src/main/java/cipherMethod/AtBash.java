@@ -1,6 +1,6 @@
 package cipherMethod;
 
-public class AtBash implements ICipherMethod {
+class AtBash implements ICipherMethod {
     private String data = "";
     private String digits = "0123456789";
     private String letter = "abcdefghijklmnopqrstuwvxyz";

@@ -1,6 +1,6 @@
 package cipherMethod;
 
-public class Cesar implements ICipherMethod {
+class Cesar implements ICipherMethod {
     private final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     private String data;

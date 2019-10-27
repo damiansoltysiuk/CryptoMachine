@@ -1,5 +1,8 @@
-package apps;
+package apps.controllers;
 
+import apps.User;
+import apps.utils.DialogUtils;
+import apps.utils.EmailUtils;
 import cipherMethod.FactoryCipher;
 import cipherMethod.ICipherMethod;
 import cipherMethod.Vigenere;
@@ -15,18 +18,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
-import org.apache.commons.mail.EmailAttachment;
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.MultiPartEmail;
 
 import java.io.*;
 import java.net.URL;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
 
-public class Controller implements Initializable {
+public class MainController implements Initializable {
     private String method;
     private String cipherMethod;
+    private User loginUser;
+    private Set<User> userSet;
+    private DialogUtils dialogUtils;
+
 
     @FXML
     private RadioButton decode;
@@ -43,14 +49,18 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private TextArea textArea;
+    private static TextArea textArea;
+
+    public static String getTextArea() {
+        return textArea.getText();
+    }
 
     @FXML
     void runAction(ActionEvent event) {
         String messege = textArea.getText();
         cipherMethod = listCipherMethod.getValue();
         ICipherMethod cipher = FactoryCipher.getInstance().makeCipher(cipherMethod);
-        if(cipher instanceof Vigenere) {
+        if (cipher instanceof Vigenere) {
             TextInputDialog dialog = new TextInputDialog("key");
             dialog.setTitle("Key");
             dialog.setHeaderText("Please write the key");
@@ -71,7 +81,7 @@ public class Controller implements Initializable {
                 throw new IllegalArgumentException();
             }
         }
-        if(cipher instanceof Vigenere) cipher.setText("key");
+        if (cipher instanceof Vigenere) cipher.setText("key");
 
     }
 
@@ -142,6 +152,10 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        userSet = new HashSet<>();
+        userSet.add(new User.Builder().setLogin("user1").setUserPass("user1").setEmail("zbyszekbogdanczyk@wp.pl").setEmailPass("12345678").setCipherMethod("Matrix").build());
+        userSet.add(new User.Builder().setLogin("user2").setUserPass("12345").setEmail("dsproduct@gmail.com").setEmailPass("1234qwer").setCipherMethod("Vigenere").build());
+
         listCipherMethod.setItems(cipherList);
         listCipherMethod.setValue("AtBash");
         method = "encode";
@@ -178,65 +192,21 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    void sendEmail(ActionEvent event) {
-        TextInputDialog dialog = new TextInputDialog("example@ex.com");
-        dialog.setTitle("Email");
-        dialog.setHeaderText("Write correct mail");
-        dialog.setContentText("Enter email: ");
-        Optional<String> result = dialog.showAndWait();
+    void sendEmail() {
+        if (loginUser != null) EmailUtils.sendEmail(loginUser);
+        else EmailUtils.sendEmail();
+    }
 
+    @FXML
+    void loginAction() {
+        dialogUtils = new DialogUtils();
+        loginUser = dialogUtils.dialogLogin(userSet);
+        listCipherMethod.setValue(loginUser.getCipherMethod());
+    }
 
-        File file = new File("/home/damian/Pulpit/msg.crpt");
-        try {
-            FileWriter fw = new FileWriter(file);
-            fw.write(textArea.getText());
-            fw.flush();
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Problem with FileWriter");
-        }
-        String login = "zbyszekbogdanczyk";
-        String password = "12345678";
-        MultiPartEmail email = new MultiPartEmail();
-        email.setHostName("smtp.wp.pl");
-        email.setSmtpPort(465);
-        email.setAuthentication(login, password);
-        email.setSSLOnConnect(true);
-        try {
-            email.setFrom("zbyszekbogdanczyk@wp.pl");
-        } catch (EmailException e) {
-            System.out.println("Invalid sender email ");
-        }
-        email.setSubject("Message");
-        try {
-            email.setMsg("rrnsdklwoewh2%&^&");
-        } catch (EmailException e) {
-            System.out.println("Incorrect message content");
-        }
-        //add attachment
-        EmailAttachment attachment = new EmailAttachment();
-        attachment.setPath("/home/damian/Pulpit/msg.crpt");
-        attachment.setDisposition(EmailAttachment.ATTACHMENT);
-        attachment.setDescription("encode message");
-        attachment.setName("msg");
-        try {
-            email.attach(attachment);
-        } catch (EmailException e) {
-            System.out.println("Problem with attachment");
-        }
-
-        try {
-            email.addTo(result.get());
-        } catch (EmailException e) {
-            System.out.println("Invalid viewer email");
-        }
-        try {
-            email.send();
-            System.out.println("email sending");
-        } catch (EmailException e) {
-            System.out.println("Problems with sending email");
-        }
-
-        file.delete();
+    @FXML
+    void addUserAction() {
+        dialogUtils = new DialogUtils();
+        dialogUtils.addUserDialog();
     }
 }

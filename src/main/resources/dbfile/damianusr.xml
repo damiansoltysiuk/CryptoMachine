@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Users xmlns="US">
+    <User id="1">
+        <login>damian</login>
+        <loginPass>kikilo</loginPass>
+        <email>mikomoto@mm.en</email>
+        <emailPass>habalaserNk</emailPass>
+        <cipherMethod>Rot13</cipherMethod>
+    </User>
+</Users>

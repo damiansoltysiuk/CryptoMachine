@@ -9,16 +9,16 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/MainMenu.fxml"));
+        Parent root = loader.load();
         Scene scene = new Scene(root, 800, 600);
         stage.setTitle("SDA Enigma Machine");
         stage.setScene(scene);
         stage.show();
+
     }
 
-    //TODO
-    // wyskakujące okienko z podaniem adresu email,
-    // klucz w metodzie vigenere
     public static void main(String[] args) {
         launch(args);
     }

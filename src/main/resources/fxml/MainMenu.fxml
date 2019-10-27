@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="apps.Controller">
+<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="apps.controllers.MainController">
     <children>
         <Button fx:id="runButton" layoutX="38.0" layoutY="231.0" mnemonicParsing="false" onAction="#runAction" prefHeight="26.0" prefWidth="738.0" text="Run and miracles happens" />
         <TextArea fx:id="textArea" layoutX="38.0" layoutY="269.0" prefHeight="290.0" prefWidth="738.0" promptText="Some text to code or decode" wrapText="true" />
@@ -62,6 +62,12 @@
                         <MenuItem mnemonicParsing="false" onAction="#closeApp" text="Close" />
                     </items>
                 </Menu>
+            <Menu mnemonicParsing="false" text="User">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#loginAction" text="Log in" />
+                  <MenuItem mnemonicParsing="false" onAction="#addUserAction" text="Add user" />
+              </items>
+            </Menu>
                 <Menu mnemonicParsing="false" text="Options">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Help" />

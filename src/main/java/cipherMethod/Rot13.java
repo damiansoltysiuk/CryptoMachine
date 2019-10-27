@@ -1,6 +1,6 @@
 package cipherMethod;
 
-public class Rot13 implements ICipherMethod {
+class Rot13 implements ICipherMethod {
     private final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     private String data;

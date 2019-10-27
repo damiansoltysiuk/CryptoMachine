@@ -1,0 +1,1 @@
+{"login":"damian","loginPass":"kikilo","email":"mikomoto@mm.en","emailPass":"habalaserNk","cipherMethod":"Rot13"}

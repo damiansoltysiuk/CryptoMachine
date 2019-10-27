@@ -4,5 +4,12 @@ module mvnCryptMachine {
     requires kernel;
     requires layout;
     requires commons.email;
+    requires java.json;
+    requires opencsv;
+    requires java.xml;
+
+
     opens apps;
+    opens apps.utils;
+    opens apps.controllers;
 }
