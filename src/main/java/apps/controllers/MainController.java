@@ -32,6 +32,7 @@ public class MainController implements Initializable {
     private User loginUser;
     private Set<User> userSet;
     private DialogUtils dialogUtils;
+    private String path = "/home/damian/Pulpit/code.pdf";
 
 
     @FXML
@@ -39,25 +40,15 @@ public class MainController implements Initializable {
 
     @FXML
     void selectMethod(ActionEvent event) {
-        if (decode.isSelected()) {
-            method = "decode";
-            System.out.println("Selected method: decode();");
-        } else {
-            method = "encode";
-            System.out.println("Selected method: encode();");
-        }
+        method = decode.isSelected() ? "decode" : "encode";
     }
 
     @FXML
-    private static TextArea textArea;
-
-    public static String getTextArea() {
-        return textArea.getText();
-    }
+    private TextArea textArea;
 
     @FXML
-    void runAction(ActionEvent event) {
-        String messege = textArea.getText();
+    void runAction() {
+        String message = textArea.getText();
         cipherMethod = listCipherMethod.getValue();
         ICipherMethod cipher = FactoryCipher.getInstance().makeCipher(cipherMethod);
         if (cipher instanceof Vigenere) {
@@ -68,7 +59,7 @@ public class MainController implements Initializable {
             Optional<String> result = dialog.showAndWait();
             cipher.setText(result.get());
         }
-        cipher.setText(messege);
+        cipher.setText(message);
         switch (method) {
             case "decode":
                 textArea.setText(cipher.decode());
@@ -89,7 +80,7 @@ public class MainController implements Initializable {
     private TextField outputFilePath;
 
     @FXML
-    void saveAction(ActionEvent event) {
+    void saveAction() {
         System.out.println("SaveAction");
         FileChooser fc = new FileChooser();
         fc.setTitle("Save file");
@@ -106,10 +97,10 @@ public class MainController implements Initializable {
                 bw.write(textArea.getText());
                 System.out.println("Save file successful");
             } catch (IOException e) {
-                System.out.println(e);
+                DialogUtils.errorDialog(e.getMessage());
             }
         } else {
-            System.out.println("File is not valid");
+            DialogUtils.errorDialog("File is not valid");
         }
     }
 
@@ -117,7 +108,7 @@ public class MainController implements Initializable {
     private TextField inputFilePath;
 
     @FXML
-    void loadAction(ActionEvent event) {
+    void loadAction() {
         System.out.println("LoadAction");
         FileChooser fc = new FileChooser();
         fc.setTitle("Load file");
@@ -137,12 +128,12 @@ public class MainController implements Initializable {
                 textArea.setText(valueOfFile.toString());
                 System.out.println("Load text successful!");
             } catch (FileNotFoundException e) {
-                System.out.println(e);
+                DialogUtils.errorDialog(e.getMessage());
             } catch (IOException e) {
-                System.out.println(e);
+                DialogUtils.errorDialog(e.getMessage());
             }
         } else {
-            System.out.println("File is not valid");
+            DialogUtils.errorDialog("File is not valid");
         }
     }
 
@@ -162,14 +153,13 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void closeApp(ActionEvent event) {
+    void closeApp() {
         Platform.exit();
         System.exit(0);
     }
 
     @FXML
-    void toPDF(ActionEvent event) {
-        String path = "/home/damian/Pulpit/code.pdf";
+    void toPDF() {
         PdfWriter writer = null;
         try {
             writer = new PdfWriter(path);

@@ -2,10 +2,8 @@ package apps.controllers;
 
 import apps.User;
 import apps.utils.CSVUtils;
-import apps.utils.DialogUtils;
 import apps.utils.JDOMUtils;
 import apps.utils.JSONUtils;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

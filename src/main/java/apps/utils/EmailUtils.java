@@ -25,7 +25,7 @@ public class EmailUtils {
         File file = new File("/home/damian/Pulpit/msg.crpt");
         try {
             FileWriter fw = new FileWriter(file);
-            fw.write(MainController.getTextArea());
+//            fw.write(MainController.getTextArea());
             fw.flush();
             fw.close();
         } catch (IOException e) {
@@ -87,7 +87,7 @@ public class EmailUtils {
         File file = new File("/home/damian/Pulpit/msg.crpt");
         try {
             FileWriter fw = new FileWriter(file);
-            fw.write(MainController.getTextArea());
+//            fw.write(MainController.getTextArea());
             fw.flush();
             fw.close();
         } catch (IOException e) {
