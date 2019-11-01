@@ -33,6 +33,7 @@ public class MainController implements Initializable {
     private Set<User> userSet;
     private DialogUtils dialogUtils;
     private String path = "/home/damian/Pulpit/code.pdf";
+    private String pathCrpt = "/home/damian/Pulpit/msg.crpt";
 
 
     @FXML
@@ -45,6 +46,10 @@ public class MainController implements Initializable {
 
     @FXML
     private TextArea textArea;
+
+    public String getTextArea() {
+        return textArea.getText();
+    }
 
     @FXML
     void runAction() {
@@ -183,8 +188,8 @@ public class MainController implements Initializable {
 
     @FXML
     void sendEmail() {
-        if (loginUser != null) EmailUtils.sendEmail(loginUser);
-        else EmailUtils.sendEmail();
+        if (loginUser != null) EmailUtils.sendEmail(loginUser, pathCrpt);
+        else EmailUtils.sendEmail(pathCrpt);
     }
 
     @FXML
